@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4        # hämtar din kod
+      - uses: actions/setup-node@v4      # installerar Node.js
+        with:
+          node-version: 20
+      - run: npm install                 # installerar beroenden
+      - run: npm test                    # kör testerna
