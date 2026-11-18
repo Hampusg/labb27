@@ -5,7 +5,7 @@ function add(a, b) {
 }
 
 function subtract(a, b) {
-  return a + b; // bugg med flit
+  return a - b; // bugg med flit
 }
 
 assert.strictEqual(add(2, 3), 5);
