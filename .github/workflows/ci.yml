@@ -32,6 +32,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Visa hemlighet i loggen
+        env:
+          HEMLIGHET: ${{ secrets.MIN_HEMLIGHET }}
+        run: echo "Hemligheten är $HEMLIGHET"
+      - name: Fyll i miljö och version
+        run: |
+          sed -i "s/{{MILJO}}/${{ vars.MILJO }}/" public/index.html
+          sed -i "s/{{VERSION}}/${{ github.sha }}/" public/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
